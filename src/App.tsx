@@ -3,7 +3,7 @@ import axios from 'axios'
 import './App.css'
 import type { PolygonResponse } from './types/Polygon';
 
-const API_URL = import.meta.env.API_URL || "http://localhost:8080";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
 function App() {
   const [tickerAggs, setTickerAggs] = useState<PolygonResponse | null>(null)
