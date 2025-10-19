@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 import type { PolygonResponse } from './types/Polygon';
+import Chart from './components/Chart';
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
@@ -10,7 +11,7 @@ function App() {
 
   const getStockData = async () => {
     try {
-      const url = `${API_URL}/api/stocks/AAPL/aggs?from=2025-10-13&to=2025-10-14`
+      const url = `${API_URL}/api/stocks/AAPL/aggs`
       const { data } = await axios.get<PolygonResponse>(url)
 
       setTickerAggs(data)
@@ -23,15 +24,11 @@ function App() {
     getStockData()
   }, [])
 
+  if (!tickerAggs) return <p>Loading...</p>;
+
   return (
     <>
-      <div>
-        {tickerAggs ? (
-          <div>{JSON.stringify(tickerAggs)}</div>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
+      <Chart ticker={tickerAggs.ticker} results={tickerAggs.results} />
     </>
   )
 }
