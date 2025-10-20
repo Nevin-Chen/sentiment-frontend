@@ -64,7 +64,7 @@ const StockChart = ({ ticker, results }: StockChartProps) => {
   return (
     <>
       <div className="chart-section">
-        <h1>{ticker}</h1>
+        <h3>{ticker}</h3>
         <div className="chart-container">
           <ReactApexCharts options={options} series={series} type="candlestick" height="100%"/>
         </div>
