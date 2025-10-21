@@ -3,6 +3,7 @@ import axios from 'axios'
 import './App.css'
 import type { PolygonResponse } from './types/Polygon';
 import Chart from './components/Chart';
+import Chat from './components/Chat'
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
@@ -28,7 +29,11 @@ function App() {
 
   return (
     <>
-      <Chart ticker={tickerAggs.ticker} results={tickerAggs.results} />
+      <h3>{tickerAggs.ticker}</h3>
+      <div className="main-layout">
+          <Chart results={tickerAggs.results} />
+          <Chat />
+      </div>
     </>
   )
 }
