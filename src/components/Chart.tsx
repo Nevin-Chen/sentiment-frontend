@@ -9,7 +9,7 @@ interface StockChartProps {
   results: PolygonAggResult[];
 }
 
-const StockChart = ({ results }: StockChartProps) => {
+const StockChart:React.FC<StockChartProps> = ({ results }) => {
   const options: ApexOptions = useMemo(() => ({
     chart: {
       toolbar: {

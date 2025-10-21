@@ -31,8 +31,8 @@ function App() {
     <>
       <h3>{tickerAggs.ticker}</h3>
       <div className="main-layout">
-          <Chart results={tickerAggs.results} />
-          <Chat />
+        <Chart results={tickerAggs.results} />
+        <Chat ticker={tickerAggs.ticker} />
       </div>
     </>
   )
