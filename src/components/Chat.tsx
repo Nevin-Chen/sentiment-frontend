@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 import './Chat.css';
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
@@ -62,7 +63,7 @@ const Chat: React.FC = () => {
         {messages.map((msg, index) => (
           <div key={index} className={`message-row ${msg.sender}`}>
             <div className={`chat-message ${msg.sender}`}>
-              {msg.text}
+              <ReactMarkdown>{msg.text}</ReactMarkdown>
             </div>
           </div>
         ))}
