@@ -1,16 +1,29 @@
 #root {
-  padding: 1rem;
+  padding: 0;
   text-align: center;
+}
+
+:root {
+  --primary-bg: #f6f4f7;
+  --primary-font: #33323a;
+  --primary-accent: #8a6b9b;
+  --primary-border: #e3dfe6;
+}
+
+.inner-container {
+  width: 90%;
+  margin: 1rem auto;
 }
 
 .main-layout {
   display: flex;
-  width: 80%;
-  margin: 0 auto;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
 }
 
-@media screen and (max-width: 1400px) {
-  .main-layout {
-    width: 90%;
+@media screen and (max-width: 1000px) {
+  .inner-container {
+    width: 95%;
   }
 }
