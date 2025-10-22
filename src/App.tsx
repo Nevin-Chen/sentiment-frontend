@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
+import Header from './components/Header'
 import type { PolygonResponse } from './types/Polygon';
 import Chart from './components/Chart';
 import Chat from './components/Chat'
@@ -29,10 +30,13 @@ function App() {
 
   return (
     <>
-      <h3>{tickerAggs.ticker}</h3>
-      <div className="main-layout">
-        <Chart results={tickerAggs.results} />
-        <Chat ticker={tickerAggs.ticker} />
+      <Header />
+      <div className="inner-container">
+        <h3>{tickerAggs.ticker}</h3>
+        <div className="main-layout">
+          <Chart results={tickerAggs.results} />
+          <Chat ticker={tickerAggs.ticker} />
+        </div>
       </div>
     </>
   )
