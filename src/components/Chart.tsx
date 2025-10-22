@@ -6,11 +6,10 @@ import mapPolygonToApexSeries from '../utils/formatPolygonData';
 import './Chart.css'
 
 interface StockChartProps {
-  ticker: String,
   results: PolygonAggResult[];
 }
 
-const StockChart = ({ ticker, results }: StockChartProps) => {
+const StockChart:React.FC<StockChartProps> = ({ results }) => {
   const options: ApexOptions = useMemo(() => ({
     chart: {
       toolbar: {
@@ -63,11 +62,8 @@ const StockChart = ({ ticker, results }: StockChartProps) => {
 
   return (
     <>
-      <div className="chart-section">
-        <h3>{ticker}</h3>
-        <div className="chart-container">
-          <ReactApexCharts options={options} series={series} type="candlestick" height="100%"/>
-        </div>
+      <div className="chart-container">
+        <ReactApexCharts options={options} series={series} type="candlestick" height="100%"/>
       </div>
     </>
   );
