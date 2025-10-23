@@ -6,7 +6,7 @@ import './Chat.css';
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
 interface ChatProps {
-  ticker: string;
+  symbol: string;
 }
 
 type Message = {
@@ -14,7 +14,7 @@ type Message = {
   text: string;
 };
 
-const Chat: React.FC<ChatProps> = ({ ticker }) => {
+const Chat: React.FC<ChatProps> = ({ symbol }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -29,7 +29,7 @@ const Chat: React.FC<ChatProps> = ({ ticker }) => {
 
     try {
       const response = await axios.post(`${API_URL}/api/gemini/chat`, {
-        ticker: ticker,
+        ticker: symbol,
         messages: [
           {
             role: 'user',

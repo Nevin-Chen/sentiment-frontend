@@ -1,15 +1,15 @@
 import { useMemo } from 'react';
 import ReactApexCharts from 'react-apexcharts'
 import type { ApexOptions } from 'apexcharts';
-import type { PolygonAggResult } from '../types/Polygon';
-import mapPolygonToApexSeries from '../utils/formatPolygonData';
+import type { OHLC } from '../types/fmp';
+import mapOLHCDataToApexSeries from '../utils/formatOHLCData';
 import './Chart.css'
 
 interface StockChartProps {
-  results: PolygonAggResult[];
+  olhcData: OHLC[];
 }
 
-const StockChart:React.FC<StockChartProps> = ({ results }) => {
+const StockChart:React.FC<StockChartProps> = ({ olhcData }) => {
   const options: ApexOptions = useMemo(() => ({
     chart: {
       toolbar: {
@@ -57,13 +57,13 @@ const StockChart:React.FC<StockChartProps> = ({ results }) => {
     }
   }), [])
 
-  const memoizedMapPolygonToApexSeries = useMemo(() => mapPolygonToApexSeries(results), [results])
-  const series = useMemo(() => [{ data: memoizedMapPolygonToApexSeries }], [memoizedMapPolygonToApexSeries])
+  const memoizedMapOLHCDataToApexSeries = useMemo(() => mapOLHCDataToApexSeries(olhcData), [olhcData])
+  const series = useMemo(() => [{ data: memoizedMapOLHCDataToApexSeries }], [memoizedMapOLHCDataToApexSeries])
 
   return (
     <>
       <div className="chart-container">
-        <ReactApexCharts options={options} series={series} type="candlestick" height="100%"/>
+        <ReactApexCharts options={options} series={series} type="candlestick" height="100%" />
       </div>
     </>
   );

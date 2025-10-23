@@ -1,4 +1,4 @@
-import type { PolygonAggResult } from "../types/Polygon"
+import type { OHLC } from "../types/fmp"
 
 const formatVolume = (num: number): string => {
   if (num >= 1000000) {
@@ -10,16 +10,16 @@ const formatVolume = (num: number): string => {
   return num.toString()
 }
 
-const mapPolygonToApexSeries = (results: PolygonAggResult[] | null) => {
+const mapOLHCDataToApexSeries = (results: OHLC[] | null) => {
   if (!results || !Array.isArray(results)) return []
 
   let mappedResults = results.map((result) => ({
-    x: result.t,
-    y: [result.o.toFixed(2), result.h.toFixed(2), result.l.toFixed(2), result.c.toFixed(2)],
-    v: formatVolume(result.v)
+    x: new Date(result.date),
+    y: [result.open.toFixed(2), result.high.toFixed(2), result.low.toFixed(2), result.close.toFixed(2)],
+    v: formatVolume(result.volume)
   }))
 
   return mappedResults
 }
 
-export default mapPolygonToApexSeries
+export default mapOLHCDataToApexSeries
