@@ -1,4 +1,4 @@
-import type { OHLC } from "../types/fmp"
+import type { OHLC } from "../types/ohlc"
 
 const formatVolume = (num: number): string => {
   if (num >= 1000000) {
