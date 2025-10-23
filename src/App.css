@@ -1,25 +1,70 @@
+:root {
+  --primary-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --primary-bg: #f7f8fa;
+  --secondary-bg: #2f3542;
+  --primary-font: #33323a;
+  --secondary-font: #4b4b52;
+  --primary-label: #86868b;
+  --primary-accent: #8a6b9b;
+  --primary-border: #d6d8db;
+  --secondary-border: #e3dfe6;
+  --secondary-accent: #7B9EA8;
+}
+
 #root {
   padding: 0;
   text-align: center;
-}
-
-:root {
-  --primary-bg: #f6f4f7;
-  --primary-font: #33323a;
-  --primary-accent: #8a6b9b;
-  --primary-border: #e3dfe6;
+  font-family: var(--primary-font-family);
 }
 
 .inner-container {
-  width: 90%;
+  width: 85%;
+  height: 100vh;
   margin: 1rem auto;
 }
 
 .main-layout {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  width: 100%;
+  gap: 1rem;
+  height: 100%;
+}
+
+.left-column {
+  flex: 3.5;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ticker-container {
+  display: flex;
+  padding: 0 .5rem;
+  text-align: left;
+  align-items: center;
+  gap: .5rem;
+}
+
+.ticker-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-font);
+}
+
+.ticker-symbol a {
+  color: var(--secondary-accent);
+  font-size: 1rem;
+}
+
+.ticker-symbol a:hover {
+  color: var(--primary-font);
 }
 
 @media screen and (max-width: 1000px) {
