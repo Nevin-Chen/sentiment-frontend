@@ -21,15 +21,16 @@
 .app-container {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 .inner-container {
   width: 85%;
   height: 100%;
-  margin: 1rem auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-self: center;
   gap: 1rem;
   min-height: 100vh;
 }
