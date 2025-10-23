@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 import Header from './components/Header'
-import type { OHLC, CompanyProfile, OHLCResponse } from './types/fmp';
+import type { CompanyProfile } from './types/fmp';
+import type { OHLC, OHLCResponse } from './types/ohlc';
 import Chart from './components/Chart';
 import Chat from './components/Chat'
 import Profile from './components/Profile'
@@ -15,8 +16,9 @@ function App() {
 
   const getStockData = async () => {
     try {
-      const url = `${API_URL}/api/stocks/AAPL/historical`
-      const { data } = await axios.get<OHLCResponse>(url)
+      const url = `${API_URL}/api/stocks/AAPL/ohlc`
+      const response = await axios.get<OHLCResponse>(url)
+      const { data } = response.data
 
       setOlhcData(data)
     } catch (err) {
@@ -24,9 +26,9 @@ function App() {
     }
   }
 
-  const getCompanyProfile = async (ticker: string) => {
+  const getCompanyProfile = async (symbol: string) => {
     try {
-      const url = `${API_URL}/api/stocks/${ticker}/profile`
+      const url = `${API_URL}/api/stocks/${symbol}/profile`
       const { data } = await axios.get<CompanyProfile>(url)
       setCompanyProfile(data)
     } catch (err) {
@@ -53,11 +55,11 @@ function App() {
         <div className="inner-container">
           <div className="main-layout">
             <div className="left-column">
-              <div className="ticker-container">
-                <div className="ticker-name">
+              <div className="company-name-container">
+                <div className="company-name">
                   {companyProfile?.companyName}
                 </div>
-                <div className="ticker-symbol">
+                <div className="company-symbol">
                   <a href={companyProfile?.website}>({companyProfile?.symbol})</a>
                 </div>
               </div>

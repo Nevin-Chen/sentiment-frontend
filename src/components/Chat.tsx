@@ -29,7 +29,7 @@ const Chat: React.FC<ChatProps> = ({ symbol }) => {
 
     try {
       const response = await axios.post(`${API_URL}/api/gemini/chat`, {
-        ticker: symbol,
+        symbol,
         messages: [
           {
             role: 'user',

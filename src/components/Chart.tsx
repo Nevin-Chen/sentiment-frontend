@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import ReactApexCharts from 'react-apexcharts'
 import type { ApexOptions } from 'apexcharts';
-import type { OHLC } from '../types/fmp';
+import type { OHLC } from '../types/ohlc';
 import mapOLHCDataToApexSeries from '../utils/formatOHLCData';
 import './Chart.css'
 
