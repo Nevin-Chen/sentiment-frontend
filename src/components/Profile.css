@@ -52,6 +52,19 @@
   text-align: left;
 }
 
+.read-more-text {
+  color: var(--secondary-accent);
+  cursor: pointer;
+  font-weight: 600;
+  margin-left: 0.25rem;
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+.read-more-text:hover {
+  color: var(--primary-font);
+}
+
 @media (max-width: 800px) {
   .profile-grid {
     grid-template-columns: 1fr;

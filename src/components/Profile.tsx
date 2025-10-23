@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { CompanyProfile } from '../types/fmp'
 import formatMarketCap from '../utils/formatDescription'
+import { truncateByWords } from '../utils/text'
 import './Profile.css'
 
 interface ProfileProps {
@@ -8,6 +9,14 @@ interface ProfileProps {
 }
 
 const Profile: React.FC<ProfileProps> = ({ companyProfile }) => {
+  const [expanded, setExpanded] = useState(false)
+  const toggleExpanded = () => setExpanded((prev) => !prev)
+
+  const shouldTruncate = companyProfile.description.length > 350
+  const displayedText = !shouldTruncate || expanded
+    ? companyProfile.description
+    : truncateByWords(companyProfile.description)
+
   return (
     <section className="profile-container">
       <div className="profile-grid">
@@ -71,7 +80,19 @@ const Profile: React.FC<ProfileProps> = ({ companyProfile }) => {
         </div>
       </div>
 
-      <p className="company-description">{companyProfile.description}</p>
+      <p className="company-description">
+        {displayedText}
+        {shouldTruncate && (
+          <span
+            onClick={toggleExpanded}
+            className="read-more-text"
+            aria-expanded={expanded}
+            aria-label={expanded ? '(read less)' : '(read more)'}
+          >
+            {expanded ? '(read less)' : '(read more)'}
+          </span>
+        )}
+      </p>
     </section>
   )
 }
