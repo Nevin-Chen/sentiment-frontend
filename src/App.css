@@ -44,7 +44,7 @@
   gap: 1rem;
 }
 
-.ticker-container {
+.company-name-container {
   display: flex;
   padding: 0 .5rem;
   text-align: left;
@@ -52,18 +52,18 @@
   gap: .5rem;
 }
 
-.ticker-name {
+.company-name {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--primary-font);
 }
 
-.ticker-symbol a {
+.company-symbol a {
   color: var(--secondary-accent);
   font-size: 1rem;
 }
 
-.ticker-symbol a:hover {
+.company-symbol a:hover {
   color: var(--primary-font);
 }
 
