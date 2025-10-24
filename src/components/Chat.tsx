@@ -23,17 +23,17 @@ const Chat: React.FC<ChatProps> = ({ symbol }) => {
 
   const suggestedPrompts = [
     {
-      label: "Chart patterns",
+      label: "Chart Patterns",
       message: `What chart patterns are currently forming for ${symbol}?`,
     },
     {
-      label: "Market sentiment",
-      message: `What is the current market sentiment for this ${symbol}?`,
+      label: "Support & Resistance",
+      message: `What are the key support and resistance levels for ${symbol}?`,
     },
     {
-      label: "Investing",
+      label: "Investment Strategy",
       message: "Help me form an investment plan based on the current chart",
-    },
+    }
   ];
 
   const sendMessage = async (customMessage?: string) => {
@@ -75,7 +75,10 @@ const Chat: React.FC<ChatProps> = ({ symbol }) => {
     <div className="chat-container">
       <div className="chat-header">
         <img src="/sentibot-avatar.png" alt="Sentibot Avatar" className="bot-avatar" />
-        <span className="bot-name">Sentibot</span>
+        <div className="bot-info">
+          <div className="bot-name">Sentibot</div>
+          <div className="bot-subtitle">Your AI Market Companion</div>
+        </div>
       </div>
 
       <div className="chat-box" ref={chatBoxRef}>

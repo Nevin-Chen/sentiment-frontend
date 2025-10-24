@@ -11,10 +11,18 @@
 .chat-header {
   display: flex;
   align-items: center;
-  padding: 0.5rem 1rem;
-  border-radius: 4px 4px 0 0;
-  background-color: var(--secondary-accent);
-  gap: .5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(
+    135deg,
+    var(--primary-accent),
+    color-mix(in srgb, #2f3542 40%, #f7f8fa)
+  );
+  color: var(--secondary-label);
+  gap: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
 }
 
 .bot-avatar {
@@ -23,9 +31,23 @@
   border-radius: 50%;
 }
 
+.bot-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
+
 .bot-name {
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.1rem;
+}
+
+.bot-subtitle {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--secondary-font);
+  letter-spacing: 0.3px;
 }
 
 .chat-box {
@@ -80,7 +102,7 @@
 }
 
 .chat-message.user {
-  background-color: var(--primary-accent);
+  background-color: var(--primary-message);
   color: #fff;
   border-radius: 20px;
   position: relative;
@@ -97,7 +119,7 @@
   right: -8px;
   height: 20px;
   width: 20px;
-  background: var(--primary-accent);
+  background: var(--primary-message);
   background-attachment: fixed;
   border-bottom-left-radius: 15px;
 }
@@ -122,6 +144,7 @@
   padding: 0.5rem 1rem;
   max-width: 75%;
   margin-right: auto;
+  animation: fadeInUp 0.35s ease both;
 }
 
 .chat-message.bot::before {
@@ -175,7 +198,7 @@
 }
 
 .suggestion-bubble:hover {
-  background-color: var(--primary-accent);
+  background-color: var(--primary-message);
   color: #fff;
   border: 1px solid transparent;
 }
@@ -207,7 +230,7 @@
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border: none;
-  background-color: var(--primary-accent);
+  background-color: var(--primary-message);
   color: #fff;
   border-radius: 20px;
   cursor: pointer;
@@ -217,4 +240,15 @@
 .chat-input-area button:disabled {
   background-color: #a0a0a0;
   cursor: not-allowed;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
