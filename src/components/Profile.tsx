@@ -50,11 +50,11 @@ const Profile: React.FC<ProfileProps> = ({ companyProfile }) => {
           <div className="content">
             <div>
               <span className="label">CEO</span>
-              <span className="value">{companyProfile.ceo}</span>
+              <span className="value">{companyProfile.ceo || 'N/A'}</span>
             </div>
             <div>
               <span className="label">Employees</span>
-              <span className="value">{companyProfile.employees}</span>
+              <span className="value">{companyProfile.employees || 'N/A'}</span>
             </div>
           </div>
         </div>
@@ -71,8 +71,12 @@ const Profile: React.FC<ProfileProps> = ({ companyProfile }) => {
               <div>
                 <div className="label">Address</div>
                 <div className="value">
-                  {companyProfile.address}, {companyProfile.city}, {companyProfile.state}{' '}
-                  {companyProfile.zip}, {companyProfile.country}
+                  {[companyProfile.address,
+                    companyProfile.city,
+                    companyProfile.state,
+                    companyProfile.zip,
+                    companyProfile.country].filter(Boolean).join(', ') || 'N/A'
+                  }
                 </div>
               </div>
             </div>
@@ -80,19 +84,21 @@ const Profile: React.FC<ProfileProps> = ({ companyProfile }) => {
         </div>
       </div>
 
-      <p className="company-description">
-        {displayedText}
-        {shouldTruncate && (
-          <span
-            onClick={toggleExpanded}
-            className="read-more-text"
-            aria-expanded={expanded}
-            aria-label={expanded ? '(read less)' : '(read more)'}
-          >
-            {expanded ? '(read less)' : '(read more)'}
-          </span>
-        )}
-      </p>
+      <div className="company-description">
+        <p>
+          {displayedText}
+          {shouldTruncate && (
+            <span
+              onClick={toggleExpanded}
+              className="read-more-text"
+              aria-expanded={expanded}
+              aria-label={expanded ? '(read less)' : '(read more)'}
+            >
+              {expanded ? '(read less)' : '(read more)'}
+            </span>
+          )}
+        </p>
+      </div>
     </section>
   )
 }

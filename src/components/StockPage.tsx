@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
-import { Chart, Chat, Profile } from '.';
+import { Chart, Chat, Profile, Tooltip } from '.';
 import type { CompanyProfile } from '../types/fmp';
 import type { OHLC, OHLCResponse } from '../types/ohlc';
 import './StockPage.css'
@@ -10,15 +10,18 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
 const StockPage: React.FC = () => {
   const { symbol } = useParams<{ symbol: string }>();
+
   const [olhcData, setOlhcData] = useState<OHLC[] | null>(null)
+  const [source, setSource] = useState<'FMP' | 'Polygon' | null>(null);
   const [companyProfile, setCompanyProfile] = useState<CompanyProfile | null>(null)
 
   const getStockData = async () => {
     try {
       const url = `${API_URL}/api/stocks/${symbol}/ohlc`
       const response = await axios.get<OHLCResponse>(url)
-      const { data } = response.data
+      const { data, source } = response.data
 
+      setSource(source)
       setOlhcData(data)
     } catch (err) {
       console.error('failed to fetch stock data', err)
@@ -51,13 +54,16 @@ const StockPage: React.FC = () => {
   return (
     <div className="inner-container">
       <div className="left-column">
-        <div className="company-name-container">
-          <div className="company-name">
-            {companyProfile?.companyName}
+        <div className="chart-header-container">
+          <div className="company-name-container">
+            <div className="company-name">
+              {companyProfile?.companyName}
+            </div>
+            <div className="company-symbol">
+              <a href={companyProfile?.website}>({companyProfile?.symbol})</a>
+            </div>
           </div>
-          <div className="company-symbol">
-            <a href={companyProfile?.website}>({companyProfile?.symbol})</a>
-          </div>
+          {source === 'Polygon' && <Tooltip text="Chart data may be delayed by up to 1 day" />}
         </div>
         <Chart olhcData={olhcData} />
         {companyProfile && <Profile companyProfile={companyProfile} />}

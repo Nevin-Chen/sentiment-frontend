@@ -4,3 +4,4 @@ export { default as Header } from './Header';
 export { default as HomePage } from './HomePage';
 export { default as Profile } from './Profile';
 export { default as StockPage } from './StockPage';
+export { default as Tooltip } from './Tooltip';
