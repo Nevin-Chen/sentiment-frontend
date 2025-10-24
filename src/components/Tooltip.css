@@ -1,7 +1,6 @@
 .tooltip-wrapper {
   position: relative;
   display: inline-block;
-  margin: 0 0.5rem 0 0;
   display: flex;
   justify-content: center;
   color: #FFC107;

@@ -6,7 +6,7 @@ import { Header, HomePage, StockPage } from './components'
 function App() {
   return (
     <>
-      <div className="app-wrapper">
+      <div className="app-container">
         <Header />
         <Router>
           <Routes>

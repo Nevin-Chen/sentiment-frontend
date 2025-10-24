@@ -5,10 +5,11 @@
   --primary-font: #33323a;
   --secondary-font: #4b4b52;
   --primary-label: #86868b;
-  --primary-accent: #8a6b9b;
+  --secondary-label: #1E2D30;
+  --primary-accent: #7B9EA8;
   --primary-border: #d6d8db;
   --secondary-border: #e3dfe6;
-  --secondary-accent: #7B9EA8;
+  --primary-message: #8a6b9b;
 }
 
 #root {
@@ -17,8 +18,7 @@
   font-family: var(--primary-font-family);
 }
 
-.app-wrapper {
+.app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
