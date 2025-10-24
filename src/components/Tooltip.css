@@ -1,0 +1,28 @@
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 0 0.5rem 0 0;
+  display: flex;
+  justify-content: center;
+  color: #FFC107;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--secondary-bg);
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0.95;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.tooltip-wrapper:hover .tooltip-text {
+  visibility: visible;
+}

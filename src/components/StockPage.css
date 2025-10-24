@@ -21,12 +21,17 @@
   gap: 1rem;
 }
 
+.chart-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .company-name-container {
   display: flex;
   padding: 0 .5rem;
-  text-align: left;
-  align-items: center;
   gap: .5rem;
+  align-items: center;
 }
 
 .company-name {
