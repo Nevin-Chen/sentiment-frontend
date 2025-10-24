@@ -53,24 +53,26 @@ const StockPage: React.FC = () => {
 
   return (
     <div className="inner-container">
-      <div className="left-column">
-        <div className="chart-header-container">
-          <div className="company-name-container">
-            <div className="company-name">
-              {companyProfile?.companyName}
-            </div>
-            <div className="company-symbol">
-              <a href={companyProfile?.website}>({companyProfile?.symbol})</a>
-            </div>
-          </div>
-          {source === 'Polygon' && <Tooltip text="Chart data may be delayed by up to 1 day" />}
+      <div className="title-container">
+        <div className="company-name">
+          {companyProfile?.companyName}
         </div>
-        <Chart olhcData={olhcData} />
-        {companyProfile && <Profile companyProfile={companyProfile} />}
+
+        <div className="company-symbol">
+          <a href={companyProfile?.website}>({companyProfile?.symbol})</a>
+        </div>
+        {source === "Polygon" && <Tooltip text="Chart data may be delayed by up to 1 day" />}
       </div>
 
-      <div className="right-column">
-        <Chat symbol={olhcData[0].symbol} />
+      <div className="inner-row">
+        <div className="left-column">
+          <Chart olhcData={olhcData} />
+          {companyProfile && <Profile companyProfile={companyProfile} />}
+        </div>
+
+        <div className="right-column">
+          <Chat symbol={olhcData[0].symbol} />
+        </div>
       </div>
     </div>
   )

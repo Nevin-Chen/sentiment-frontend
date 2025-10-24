@@ -53,7 +53,7 @@
 }
 
 .read-more-text {
-  color: var(--secondary-accent);
+  color: var(--primary-accent);
   cursor: pointer;
   font-weight: 600;
   margin-left: 0.25rem;
