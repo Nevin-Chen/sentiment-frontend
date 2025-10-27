@@ -52,7 +52,7 @@ const StockPage: React.FC = () => {
   if (!olhcData) return <p>Loading...</p>
 
   return (
-    <div className="inner-container">
+    <>
       <div className="title-container">
         <div className="company-name">
           {companyProfile?.companyName}
@@ -74,7 +74,7 @@ const StockPage: React.FC = () => {
           <Chat symbol={olhcData[0].symbol} />
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
