@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import { Header, HomePage, StockPage } from './components'
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/stocks/:symbol" element={<StockPage />} />
               </Routes>
             </div>
+          <Footer />
         </Router>
       </div>
     </>
