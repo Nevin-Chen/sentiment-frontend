@@ -1,8 +1,12 @@
 import React from 'react'
+import { Search } from '.'
+import './HomePage.css'
 
 const HomePage: React.FC = () => {
   return (
-    <p>Hello</p>
+    <div className="home-container">
+      <Search variant='home'/>
+    </div>
   )
 }
 
