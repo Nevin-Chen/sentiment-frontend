@@ -1,16 +1,7 @@
-.inner-container {
-  width: 85%;
-  height: 100%;
-  margin: 1rem auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-}
-
 .title-container {
   display: flex;
   align-items: center;
+  align-self: flex-start;
   gap: .5rem;
   margin-left: 1rem;
 }

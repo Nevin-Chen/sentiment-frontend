@@ -7,12 +7,14 @@ function App() {
   return (
     <>
       <div className="app-container">
-        <Header />
         <Router>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/:symbol" element={<StockPage />} />
-          </Routes>
+          <Header />
+            <div className="inner-container">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/stocks/:symbol" element={<StockPage />} />
+              </Routes>
+            </div>
         </Router>
       </div>
     </>

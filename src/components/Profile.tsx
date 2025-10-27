@@ -92,9 +92,8 @@ const Profile: React.FC<ProfileProps> = ({ companyProfile }) => {
               onClick={toggleExpanded}
               className="read-more-text"
               aria-expanded={expanded}
-              aria-label={expanded ? '(read less)' : '(read more)'}
             >
-              {expanded ? '(read less)' : '(read more)'}
+              {expanded ? '(read less)' : '(...more)'}
             </span>
           )}
         </p>

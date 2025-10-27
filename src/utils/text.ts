@@ -3,7 +3,7 @@ export function truncateByWords(text: string, maxLength: number = 350): string {
 
   const truncated = text.slice(0, maxLength);
   const lastSpaceIndex = truncated.lastIndexOf(' ');
-  if (lastSpaceIndex === -1) return truncated + '...';
+  if (lastSpaceIndex === -1) return truncated;
 
-  return truncated.slice(0, lastSpaceIndex) + '...';
+  return truncated.slice(0, lastSpaceIndex);
 }
