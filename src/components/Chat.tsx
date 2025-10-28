@@ -7,6 +7,9 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
 interface ChatProps {
   symbol: string;
+  isMobile: boolean;
+  open: boolean;
+  setOpen: (val: boolean) => void;
 }
 
 type Message = {
@@ -14,27 +17,18 @@ type Message = {
   text: string;
 };
 
-const Chat: React.FC<ChatProps> = ({ symbol }) => {
+const suggestedPrompts = (symbol: string) => [
+  { label: 'Chart Patterns', message: `What chart patterns are currently forming for ${symbol}?` },
+  { label: 'Support & Resistance', message: `What are the key support and resistance levels for ${symbol}?` },
+  { label: 'Investment Strategy', message: `Using the current chart data, help me form an investment plan for ${symbol}` },
+];
+
+const Chat: React.FC<ChatProps> = ({ symbol, isMobile, open, setOpen }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [suggestionsVisible, setSuggestionsVisible] = useState(true);
   const chatBoxRef = useRef<HTMLDivElement | null>(null);
-
-  const suggestedPrompts = [
-    {
-      label: "Chart Patterns",
-      message: `What chart patterns are currently forming for ${symbol}?`,
-    },
-    {
-      label: "Support & Resistance",
-      message: `What are the key support and resistance levels for ${symbol}?`,
-    },
-    {
-      label: "Investment Strategy",
-      message: "Help me form an investment plan based on the current chart",
-    }
-  ];
 
   const sendMessage = async (customMessage?: string) => {
     const messageToSend = customMessage || input;
@@ -72,13 +66,16 @@ const Chat: React.FC<ChatProps> = ({ symbol }) => {
   }, [messages, loading]);
 
   return (
-    <div className="chat-container">
+    <div className={`chat-container ${isMobile ? 'mobile' : ''} ${open ? 'open' : ''}`}>
       <div className="chat-header">
         <img src="/sentibot-avatar.png" alt="Sentibot Avatar" className="bot-avatar" />
         <div className="bot-info">
           <div className="bot-name">Sentibot</div>
           <div className="bot-subtitle">Your AI Market Companion</div>
         </div>
+        {isMobile && open && (
+          <button className="close-chat" onClick={() => setOpen(false)}>✕</button>
+        )}
       </div>
 
       <div className="chat-box" ref={chatBoxRef}>
@@ -100,7 +97,7 @@ const Chat: React.FC<ChatProps> = ({ symbol }) => {
         <div>
           {suggestionsVisible && messages.length === 0 && (
             <div className="suggestions-bar">
-              {suggestedPrompts.map((s, i) => (
+              {suggestedPrompts(symbol).map((s, i) => (
                 <button
                   key={i}
                   className="suggestion-bubble"

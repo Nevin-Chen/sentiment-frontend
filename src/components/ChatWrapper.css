@@ -1,0 +1,37 @@
+.chat-wrapper {
+  display: flex;
+  flex: 1;
+}
+
+.chat-collapsed {
+  border-radius: 50%;
+  background-color: var(--primary-accent);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.bot-avatar-small {
+  width: 36px;
+  height: 36px;
+}
+
+.bot-name-small {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .chat-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+  }
+}
