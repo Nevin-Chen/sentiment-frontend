@@ -46,4 +46,8 @@
   .inner-container {
     width: 95%;
   }
+
+  .right-column {
+    flex: 0;
+  }
 }

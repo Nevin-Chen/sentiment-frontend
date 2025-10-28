@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
-import { Chart, Chat, Profile, Tooltip } from '.';
+import { Chart, ChatWrapper, Profile, Tooltip } from '.';
 import type { CompanyProfile } from '../types/fmp';
 import type { OHLC, OHLCResponse } from '../types/ohlc';
 import './StockPage.css'
@@ -71,7 +71,7 @@ const StockPage: React.FC = () => {
         </div>
 
         <div className="right-column">
-          <Chat symbol={olhcData[0].symbol} />
+          <ChatWrapper symbol={olhcData[0].symbol} />
         </div>
       </div>
     </>
