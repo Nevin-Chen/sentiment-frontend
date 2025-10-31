@@ -1,0 +1,37 @@
+.articles-section-FMP {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.articles-section-Massive {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin: 1rem 0;
+}
+
+.articles-header-FMP {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.articles-header-Massive {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.expand-arrow {
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  border-left: 2px solid var(--primary-label);
+  border-bottom: 2px solid var(--primary-label);
+  transform: rotate(-45deg);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.expand-arrow.expanded {
+  transform: rotate(135deg);
+}
