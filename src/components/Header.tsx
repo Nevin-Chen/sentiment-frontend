@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Search } from '.'
 import './Header.css'
 
@@ -10,7 +10,9 @@ const Header: React.FC = () => {
   return (
     <header className="header-container">
       <div className="header-left">
-        <div className="logo">Sentiment<span className="logo-accent">AI</span></div>
+        <Link to={"/"}>
+          <div className="logo">Sentiment<span className="logo-accent">AI</span></div>
+        </Link>
       </div>
       <div className="header-center">
         {!isHomepage && <Search />}

@@ -12,7 +12,7 @@ const StockPage: React.FC = () => {
   const { symbol } = useParams<{ symbol: string }>();
 
   const [olhcData, setOlhcData] = useState<OHLC[] | null>(null)
-  const [source, setSource] = useState<'FMP' | 'Polygon' | null>(null);
+  const [source, setSource] = useState<'FMP' | 'Massive' | null>(null);
   const [companyProfile, setCompanyProfile] = useState<CompanyProfile | null>(null)
 
   const getStockData = async () => {
@@ -28,7 +28,7 @@ const StockPage: React.FC = () => {
     }
   }
 
-  const getCompanyProfile = async (symbol: string) => {
+  const getCompanyProfile = async () => {
     try {
       const url = `${API_URL}/api/stocks/${symbol}/profile`
       const { data } = await axios.get<CompanyProfile>(url)
@@ -41,15 +41,10 @@ const StockPage: React.FC = () => {
 
   useEffect(() => {
     getStockData()
+    getCompanyProfile()
   }, [symbol])
 
-  useEffect(() => {
-    if (olhcData && olhcData.length > 0) {
-      getCompanyProfile(olhcData[0].symbol)
-    }
-  }, [olhcData])
-
-  if (!olhcData) return <p>Loading...</p>
+  if (!olhcData || !symbol) return <p>Loading...</p>
 
   return (
     <>
@@ -61,7 +56,7 @@ const StockPage: React.FC = () => {
         <div className="company-symbol">
           <a href={companyProfile?.website}>({companyProfile?.symbol})</a>
         </div>
-        {source === "Polygon" && <Tooltip text="Chart data may be delayed by up to 1 day" />}
+        {source === "Massive" && <Tooltip text="Chart data may be delayed by up to 1 day" />}
       </div>
 
       <div className="inner-row">
@@ -71,7 +66,7 @@ const StockPage: React.FC = () => {
         </div>
 
         <div className="right-column">
-          <ChatWrapper symbol={olhcData[0].symbol} />
+          <ChatWrapper symbol={symbol} />
         </div>
       </div>
     </>
