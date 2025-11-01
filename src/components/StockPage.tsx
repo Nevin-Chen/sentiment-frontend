@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
-import { Chart, ChatWrapper, Profile, Tooltip } from '.';
+import { Chart, ChatWrapper, Articles, Profile, Tooltip } from '.';
 import type { CompanyProfile } from '../types/fmp';
 import type { OHLC, OHLCResponse } from '../types/ohlc';
+import type { NewsArticleResponse } from '../types/newsArticle';
 import './StockPage.css'
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
@@ -14,6 +15,7 @@ const StockPage: React.FC = () => {
   const [olhcData, setOlhcData] = useState<OHLC[] | null>(null)
   const [source, setSource] = useState<'FMP' | 'Massive' | null>(null);
   const [companyProfile, setCompanyProfile] = useState<CompanyProfile | null>(null)
+  const [newsResponse, setNewsResponse] = useState<NewsArticleResponse | null>(null)
 
   const getStockData = async () => {
     try {
@@ -35,13 +37,24 @@ const StockPage: React.FC = () => {
       setCompanyProfile(data)
     } catch (err) {
       console.error('Failed to fetch company profile', err)
-      setCompanyProfile(null)
+    }
+  }
+
+  const getStockNews = async () => {
+    try {
+      const url = `${API_URL}/api/stocks/${symbol}/news`
+      const { data } = await axios.get<NewsArticleResponse>(url)
+
+      setNewsResponse(data)
+    } catch (err) {
+      console.error(`Failed to fetch ${symbol} news`, err)
     }
   }
 
   useEffect(() => {
     getStockData()
     getCompanyProfile()
+    getStockNews()
   }, [symbol])
 
   if (!olhcData || !symbol) return <p>Loading...</p>
@@ -62,6 +75,7 @@ const StockPage: React.FC = () => {
       <div className="inner-row">
         <div className="left-column">
           <Chart olhcData={olhcData} />
+          {newsResponse && <Articles articles={newsResponse.articles} source={newsResponse.source} />}
           {companyProfile && <Profile companyProfile={companyProfile} />}
         </div>
 

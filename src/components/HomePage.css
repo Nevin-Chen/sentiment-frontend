@@ -1,5 +1,31 @@
 .home-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: 1rem;
+}
+
+.hero-container {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.brand {
+  color: var(--primary-accent);
+}
+
+.hero-subtitle {
+  color: var(--secondary-font);
+  font-size: .95rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
 }
