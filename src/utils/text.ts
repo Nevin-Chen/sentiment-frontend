@@ -1,4 +1,4 @@
-export function truncateByWords(text: string, maxLength: number = 350): string {
+export const truncateByWords = (text: string, maxLength: number = 350): string => {
   if (text.length <= maxLength) return text;
 
   const truncated = text.slice(0, maxLength);

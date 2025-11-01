@@ -66,7 +66,7 @@ const Chat: React.FC<ChatProps> = ({ symbol, isMobile, open, setOpen }) => {
   }, [messages, loading]);
 
   return (
-    <div className={`chat-container ${isMobile ? 'mobile' : ''} ${open ? 'open' : ''}`}>
+    <div className={`chat-container${isMobile ? ' mobile' : ''}${open ? ' open' : ''}`}>
       <div className="chat-header">
         <img src="/sentibot-avatar.png" alt="Sentibot Avatar" className="bot-avatar" />
         <div className="bot-info">
@@ -88,7 +88,13 @@ const Chat: React.FC<ChatProps> = ({ symbol, isMobile, open, setOpen }) => {
         ))}
         {loading && (
           <div className="message-row bot">
-            <div className="chat-message bot">...</div>
+            <div className="chat-message bot">
+              <div className="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
           </div>
         )}
       </div>

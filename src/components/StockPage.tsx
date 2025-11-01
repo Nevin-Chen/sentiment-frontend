@@ -57,7 +57,7 @@ const StockPage: React.FC = () => {
     getStockNews()
   }, [symbol])
 
-  if (!olhcData || !symbol) return <p>Loading...</p>
+  if (!symbol) return <p>Loading...</p>
 
   return (
     <>
@@ -74,14 +74,17 @@ const StockPage: React.FC = () => {
 
       <div className="inner-row">
         <div className="left-column">
-          <Chart olhcData={olhcData} />
+          {olhcData && <Chart olhcData={olhcData} />}
           {newsResponse && <Articles articles={newsResponse.articles} source={newsResponse.source} />}
-          {companyProfile && <Profile companyProfile={companyProfile} />}
         </div>
 
         <div className="right-column">
           <ChatWrapper symbol={symbol} />
         </div>
+      </div>
+
+      <div>
+        {companyProfile && <Profile companyProfile={companyProfile} />}
       </div>
     </>
   )

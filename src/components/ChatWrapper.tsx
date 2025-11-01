@@ -4,7 +4,7 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 import './ChatWrapper.css';
 
 const ChatWrapper: React.FC<{ symbol: string }> = ({ symbol }) => {
-  const isMobile = useMediaQuery('(max-width: 1000px)');
+  const isMobile = useMediaQuery('(max-width: 1200px)');
   const [open, setOpen] = useState(false);
 
   return (
@@ -17,6 +17,7 @@ const ChatWrapper: React.FC<{ symbol: string }> = ({ symbol }) => {
       )}
 
       <Chat
+        key={symbol}
         symbol={symbol}
         isMobile={isMobile}
         open={open}

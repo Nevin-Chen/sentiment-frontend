@@ -27,7 +27,7 @@
   font-size: 0.9rem;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
   .chat-wrapper {
     position: fixed;
     bottom: 20px;
