@@ -7,4 +7,4 @@ export { default as StockPage } from './StockPage';
 export { default as Tooltip } from './Tooltip';
 export { default as Search } from './Search';
 export { default as ChatWrapper } from './ChatWrapper';
-export { default as Articles } from './Articles'
+export { default as Articles } from './Articles';

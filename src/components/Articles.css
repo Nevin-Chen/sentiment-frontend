@@ -1,14 +1,14 @@
 .articles-section-FMP {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .articles-section-Massive {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
-  margin: 1rem .5rem;
+  gap: 0.5rem;
+  margin: 1rem 0.5rem;
 }
 
 .articles-header-FMP {

@@ -3,7 +3,7 @@
   display: inline-block;
   display: flex;
   justify-content: center;
-  color: #FFC107;
+  color: #ffc107;
 }
 
 .tooltip-text {
@@ -19,7 +19,7 @@
   font-size: 0.85rem;
   white-space: nowrap;
   opacity: 0.95;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .tooltip-wrapper:hover .tooltip-text {

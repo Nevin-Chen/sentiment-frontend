@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Search } from '.'
-import './Header.css'
+import { Search } from ".";
+import "./Header.css";
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -11,15 +11,15 @@ const Header: React.FC = () => {
     <header className="header-container">
       <div className="header-left">
         <Link to={"/"}>
-          <div className="logo">Sentiment<span className="logo-accent">AI</span></div>
+          <div className="logo">
+            Sentiment<span className="logo-accent">AI</span>
+          </div>
         </Link>
       </div>
-      <div className="header-center">
-        {!isHomepage && <Search />}
-      </div>
+      <div className="header-center">{!isHomepage && <Search />}</div>
       <div className="header-right"></div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
