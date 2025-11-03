@@ -1,21 +1,22 @@
-import React, { useState } from 'react'
-import type { CompanyProfile } from '../types/fmp'
-import { formatMarketCap } from '../utils/formatDescription'
-import { truncateByWords } from '../utils/text'
-import './Profile.css'
+import React, { useState } from "react";
+import type { CompanyProfile } from "../types/fmp";
+import { formatMarketCap } from "../utils/formatDescription";
+import { truncateByWords } from "../utils/text";
+import "./Profile.css";
 
 interface ProfileProps {
-  companyProfile: CompanyProfile
+  companyProfile: CompanyProfile;
 }
 
 const Profile: React.FC<ProfileProps> = ({ companyProfile }) => {
-  const [expanded, setExpanded] = useState(false)
-  const toggleExpanded = () => setExpanded((prev) => !prev)
+  const [expanded, setExpanded] = useState(false);
+  const toggleExpanded = () => setExpanded((prev) => !prev);
 
-  const shouldTruncate = companyProfile.description.length > 350
-  const displayedText = !shouldTruncate || expanded
-    ? companyProfile.description
-    : truncateByWords(companyProfile.description)
+  const shouldTruncate = companyProfile.description.length > 350;
+  const displayedText =
+    !shouldTruncate || expanded
+      ? companyProfile.description
+      : truncateByWords(companyProfile.description);
 
   return (
     <section className="profile-container">
@@ -50,11 +51,11 @@ const Profile: React.FC<ProfileProps> = ({ companyProfile }) => {
           <div className="content">
             <div>
               <span className="label">CEO</span>
-              <span className="value">{companyProfile.ceo || 'N/A'}</span>
+              <span className="value">{companyProfile.ceo || "N/A"}</span>
             </div>
             <div>
               <span className="label">Employees</span>
-              <span className="value">{companyProfile.employees || 'N/A'}</span>
+              <span className="value">{companyProfile.employees || "N/A"}</span>
             </div>
           </div>
         </div>
@@ -71,12 +72,15 @@ const Profile: React.FC<ProfileProps> = ({ companyProfile }) => {
               <div>
                 <div className="label">Address</div>
                 <div className="value">
-                  {[companyProfile.address,
+                  {[
+                    companyProfile.address,
                     companyProfile.city,
                     companyProfile.state,
                     companyProfile.zip,
-                    companyProfile.country].filter(Boolean).join(', ') || 'N/A'
-                  }
+                    companyProfile.country
+                  ]
+                    .filter(Boolean)
+                    .join(", ") || "N/A"}
                 </div>
               </div>
             </div>
@@ -93,13 +97,13 @@ const Profile: React.FC<ProfileProps> = ({ companyProfile }) => {
               className="read-more-text"
               aria-expanded={expanded}
             >
-              {expanded ? '(read less)' : '(...more)'}
+              {expanded ? "(read less)" : "(...more)"}
             </span>
           )}
         </p>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

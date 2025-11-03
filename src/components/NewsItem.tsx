@@ -1,8 +1,8 @@
-import React from 'react';
-import './NewsItem.css';
-import { removeHtmlTag } from '../utils/removeHtmlTags';
-import { truncateByWords } from '../utils/text';
-import { formatToLocalAmPm } from '../utils/date';
+import React from "react";
+import "./NewsItem.css";
+import { removeHtmlTag } from "../utils/removeHtmlTags";
+import { truncateByWords } from "../utils/text";
+import { formatToLocalAmPm } from "../utils/date";
 
 interface NewsItemProps {
   title: string;
@@ -12,7 +12,13 @@ interface NewsItemProps {
   image?: string;
 }
 
-const NewsItem: React.FC<NewsItemProps> = ({ title, link, date, image, content }) => {
+const NewsItem: React.FC<NewsItemProps> = ({
+  title,
+  link,
+  date,
+  image,
+  content
+}) => {
   return (
     <div className="news-item">
       <div className="news-item-image-container">
@@ -21,9 +27,7 @@ const NewsItem: React.FC<NewsItemProps> = ({ title, link, date, image, content }
 
       <div className="news-item-content">
         <a href={link} target="_blank" rel="noopener noreferrer">
-          <div className="news-title">
-            {title}
-          </div>
+          <div className="news-title">{title}</div>
         </a>
 
         <div className="news-preview">
@@ -31,9 +35,7 @@ const NewsItem: React.FC<NewsItemProps> = ({ title, link, date, image, content }
         </div>
       </div>
 
-      <div className="news-item-meta">
-        {formatToLocalAmPm(date)}
-      </div>
+      <div className="news-item-meta">{formatToLocalAmPm(date)}</div>
     </div>
   );
 };

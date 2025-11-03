@@ -13,7 +13,7 @@ export const formatVolume = (num: number): string => {
 export const mapOLHCDataToApexSeries = (results: OHLC[] | null) => {
   if (!results || !Array.isArray(results)) return []
 
-  let mappedResults = results.map((result) => ({
+  const mappedResults = results.map((result) => ({
     x: new Date(result.date),
     y: [result.open.toFixed(2), result.high.toFixed(2), result.low.toFixed(2), result.close.toFixed(2)],
     v: formatVolume(result.volume)

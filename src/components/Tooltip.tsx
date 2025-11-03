@@ -1,4 +1,4 @@
-import './Tooltip.css';
+import "./Tooltip.css";
 
 interface TooltipProps {
   text: string;
@@ -15,13 +15,11 @@ const Tooltip: React.FC<TooltipProps> = ({ text }) => {
         width="18"
         height="18"
       >
-        <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM8 12a.5.5 0 0 1-.5-.5V8a.5.5 0 0 1 1 0v3.5A.5.5 0 0 1 8 12zm0-6a.75.75 0 1 1 0-1.5A.75.75 0 0 1 8 6z"/>
+        <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM8 12a.5.5 0 0 1-.5-.5V8a.5.5 0 0 1 1 0v3.5A.5.5 0 0 1 8 12zm0-6a.75.75 0 1 1 0-1.5A.75.75 0 0 1 8 6z" />
       </svg>
-      <span className="tooltip-text">
-        { text }
-      </span>
+      <span className="tooltip-text">{text}</span>
     </span>
-  )
-}
+  );
+};
 
 export default Tooltip;
