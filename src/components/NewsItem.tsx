@@ -1,5 +1,8 @@
 import React from 'react';
 import './NewsItem.css';
+import { removeHtmlTag } from '../utils/removeHtmlTags';
+import { truncateByWords } from '../utils/text';
+import { formatToLocalAmPm } from '../utils/date';
 
 interface NewsItemProps {
   title: string;
@@ -24,12 +27,12 @@ const NewsItem: React.FC<NewsItemProps> = ({ title, link, date, image, content }
         </a>
 
         <div className="news-preview">
-          {content}
+          {truncateByWords(removeHtmlTag(content), 120) + "..."}
         </div>
       </div>
 
       <div className="news-item-meta">
-        {date}
+        {formatToLocalAmPm(date)}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import type { OHLC } from "../types/ohlc"
 
-const formatVolume = (num: number): string => {
+export const formatVolume = (num: number): string => {
   if (num >= 1000000) {
     return (num / 1000000).toFixed(2).replace(/\.0$/, '') + 'M'
   }
@@ -10,7 +10,7 @@ const formatVolume = (num: number): string => {
   return num.toString()
 }
 
-const mapOLHCDataToApexSeries = (results: OHLC[] | null) => {
+export const mapOLHCDataToApexSeries = (results: OHLC[] | null) => {
   if (!results || !Array.isArray(results)) return []
 
   let mappedResults = results.map((result) => ({
@@ -21,5 +21,3 @@ const mapOLHCDataToApexSeries = (results: OHLC[] | null) => {
 
   return mappedResults
 }
-
-export default mapOLHCDataToApexSeries

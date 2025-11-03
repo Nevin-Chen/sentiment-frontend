@@ -17,17 +17,17 @@ type Message = {
   text: string;
 };
 
-const suggestedPrompts = (symbol: string) => [
-  { label: 'Chart Patterns', message: `What chart patterns are currently forming for ${symbol}?` },
-  { label: 'Support & Resistance', message: `What are the key support and resistance levels for ${symbol}?` },
-  { label: 'Investment Strategy', message: `Using the current chart data, help me form an investment plan for ${symbol}` },
-];
-
 const Chat: React.FC<ChatProps> = ({ symbol, isMobile, open, setOpen }) => {
+  const suggestedPrompts = [
+    { label: 'Chart Patterns', message: `What chart patterns are currently forming for ${symbol}?` },
+    { label: 'Support & Resistance', message: `What are the key support and resistance levels for ${symbol}?` },
+    { label: 'Investment Strategy', message: `Using the current chart data, help me form an investment plan for ${symbol}` },
+  ];
+
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [suggestionsVisible, setSuggestionsVisible] = useState(true);
+  const [suggestions, setSuggestions] = useState(suggestedPrompts);
   const chatBoxRef = useRef<HTMLDivElement | null>(null);
 
   const sendMessage = async (customMessage?: string) => {
@@ -37,7 +37,6 @@ const Chat: React.FC<ChatProps> = ({ symbol, isMobile, open, setOpen }) => {
     const userMessage: Message = { sender: 'user', text: messageToSend };
     setMessages(prev => [...prev, userMessage]);
     setInput('');
-    setSuggestionsVisible(false);
     setLoading(true);
 
     try {
@@ -59,6 +58,13 @@ const Chat: React.FC<ChatProps> = ({ symbol, isMobile, open, setOpen }) => {
     setLoading(false);
   };
 
+  const handleSuggestion = (suggestion: { label: string, message: string }) => {
+    if (loading) return null;
+
+    sendMessage(suggestion.message)
+    setSuggestions(prev => prev.filter(currSuggestion => currSuggestion !== suggestion))
+  }
+
   useEffect(() => {
     if (chatBoxRef.current) {
       chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
@@ -66,7 +72,7 @@ const Chat: React.FC<ChatProps> = ({ symbol, isMobile, open, setOpen }) => {
   }, [messages, loading]);
 
   return (
-    <div className={`chat-container ${isMobile ? 'mobile' : ''} ${open ? 'open' : ''}`}>
+    <div className={`chat-container${isMobile ? ' mobile' : ''}${open ? ' open' : ''}`}>
       <div className="chat-header">
         <img src="/sentibot-avatar.png" alt="Sentibot Avatar" className="bot-avatar" />
         <div className="bot-info">
@@ -88,30 +94,33 @@ const Chat: React.FC<ChatProps> = ({ symbol, isMobile, open, setOpen }) => {
         ))}
         {loading && (
           <div className="message-row bot">
-            <div className="chat-message bot">...</div>
+            <div className="chat-message bot">
+              <div className="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
           </div>
         )}
       </div>
 
       <div className="chat-input-container">
-        <div>
-          {suggestionsVisible && messages.length === 0 && (
-            <div className="suggestions-bar">
-              {suggestedPrompts(symbol).map((s, i) => (
-                <button
-                  key={i}
-                  className="suggestion-bubble"
-                  onClick={() => sendMessage(s.message)}
-                >
-                  {s.label}
-                </button>
-              ))}
-            </div>
-          )}
+        <div className="suggestions-container">
+          {suggestions.map((suggestion, idx) => (
+            <button
+              key={idx}
+              className="suggestion-bubble"
+              onClick={() => handleSuggestion(suggestion)}
+            >
+              {suggestion.label}
+            </button>
+          ))}
         </div>
 
         <div className="chat-input-area">
           <textarea
+            name="sentibot-chat-input-area"
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => {

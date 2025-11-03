@@ -30,7 +30,8 @@ const HomePage: React.FC = () => {
         </div>
 
         <div className="hero-subtitle">
-          Search a stock and Sentibot will guide you through the charts, trends, and technicals
+          Search a stock and Sentibot will guide you through the <br/>
+          charts, trends, and technicals
         </div>
       </div>
       <Search variant="home"/>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import type { CompanyProfile } from '../types/fmp'
-import formatMarketCap from '../utils/formatDescription'
+import { formatMarketCap } from '../utils/formatDescription'
 import { truncateByWords } from '../utils/text'
 import './Profile.css'
 

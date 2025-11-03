@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import NewsItem from './NewsItem';
 import type { NewsArticleResponse } from '../types/newsArticle';
-import { truncateByWords } from '../utils/text';
-import { formatToLocalTimeFromGMT, formatToLocalAmPm } from '../utils/date';
-import { removeHtmlTag } from '../utils/removeHtmlTags';
 import './Articles.css';
 
 const Articles: React.FC<NewsArticleResponse> = ({ articles, source }) => {
@@ -17,9 +14,9 @@ const Articles: React.FC<NewsArticleResponse> = ({ articles, source }) => {
         <NewsItem
           key={idx}
           title={article.title}
-          content={truncateByWords(removeHtmlTag(article.content), 120) + "..."}
+          content={article.content}
           link={article.link}
-          date={source === "FMP" ? formatToLocalTimeFromGMT(article.date) : formatToLocalAmPm(article.date)}
+          date={article.date}
           image={article.image}
         />
       ))}
