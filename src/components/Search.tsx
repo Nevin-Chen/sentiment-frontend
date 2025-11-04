@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFlash } from "../hooks/flash";
 import "./Search.css";
+import axios from "axios";
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
 interface SearchProps {
   variant?: "header" | "home";
@@ -8,14 +12,23 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ variant = "header" }) => {
   const [query, setQuery] = useState("");
+  const { setFlash } = useFlash();
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const trimmed = query.trim();
-    if (!trimmed) return;
-    navigate(`/stocks/${trimmed.toUpperCase()}`);
-    setQuery("");
+    const trimmedSymbol = query.trim();
+    if (!trimmedSymbol) return;
+
+    try {
+      const url = `${API_URL}/api/stocks/${trimmedSymbol}/ohlc`;
+      const { data } = await axios.get(url);
+
+      navigate(`/stocks/${trimmedSymbol.toUpperCase()}`, { state: data });
+      setQuery("");
+    } catch (error: any) {
+      setFlash(error?.response?.data?.error);
+    }
   };
 
   return (

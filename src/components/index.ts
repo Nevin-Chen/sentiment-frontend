@@ -1,6 +1,7 @@
 export { default as Chart } from './Chart';
 export { default as Chat } from './Chat';
 export { default as Header } from './Header';
+export { default as Footer } from './Footer';
 export { default as HomePage } from './HomePage';
 export { default as Profile } from './Profile';
 export { default as StockPage } from './StockPage';
@@ -8,3 +9,4 @@ export { default as Tooltip } from './Tooltip';
 export { default as Search } from './Search';
 export { default as ChatWrapper } from './ChatWrapper';
 export { default as Articles } from './Articles';
+export { default as NotFound } from './NotFound';
