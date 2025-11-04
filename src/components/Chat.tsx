@@ -96,7 +96,7 @@ const Chat: React.FC<ChatProps> = ({ symbol, isMobile, open, setOpen }) => {
         </div>
         {isMobile && open && (
           <button className="close-chat" onClick={() => setOpen(false)}>
-            ✕
+            &times;
           </button>
         )}
       </div>
