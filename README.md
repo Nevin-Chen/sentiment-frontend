@@ -14,11 +14,7 @@ A React + Vite frontend featuring stock charts, market news, and an AI assistant
   - Stock news - Provides the most recent news on a company
   - Company profile - Presents general company information
 
-### Tech Stack
-
-- React, TypeScript, Vite, CSS, ApexCharts, and Vercel
-
-### Getting started
+## Getting started
 
 1. Clone the project
 
@@ -32,9 +28,6 @@ cd sentiment-frontend
 ```bash
 npm install
 ```
-- Create an .env file in the project root and add your [backend](https://github.com/Nevin-Chen/sentiment-backend) URL as the `VITE_API_URL` API key.  
-*or*
-- Have the backend running on http://localhost:8080.
 
 3. Run the app locally
 
@@ -42,9 +35,30 @@ npm install
 npm run dev
 ```
 
-## Roadmap
+## Setting up the environment
 
-- Auth/Oauth
+- Create an .env file in the project root following `.env.example`
+- Add your [backend](https://github.com/Nevin-Chen/sentiment-backend) URL
+ - Set it to either `VITE_API_URL`  
+  *or*
+ - Use the default http://localhost:8080 and have the backend running locally
+
+#### Auth0
+
+- Register for Auth0 and set the `VITE_AUTH0_DOMAIN` and `VITE_AUTH0_CLIENT_ID` key
+- Reference the following [docs](https://auth0.com/docs/quickstart/spa/react)
+
+## Technologies
+
+- TypeScript
+- React
+- Vite
+- Auth0
+- Vercel
+- ApexCharts
+
+## Features Roadmap
+
 - Improve Charting feature
   - Integrate additional visual indicators and timeframes
   - Charting based on AI model feedback
