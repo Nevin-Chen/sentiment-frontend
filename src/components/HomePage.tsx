@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Search, Articles } from ".";
 import axios from "axios";
 import type { NewsArticleResponse } from "../types/newsArticle";
+import { API_URL } from "../config/api";
 import "./HomePage.css";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
 const HomePage: React.FC = () => {
   const [newsResponse, setNewsResponse] = useState<NewsArticleResponse | null>(null);
 
   const getHeadlineArticles = async () => {
-    const url = `${API_URL}/api/stocks/news`;
+    const url = `${API_URL}/stocks/news`;
     const { data } = await axios.get(url);
 
     setNewsResponse(data);

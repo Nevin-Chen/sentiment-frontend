@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
+import { API_URL } from "../config/api";
 import "./Chat.css";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
 interface ChatProps {
   symbol: string;
@@ -49,10 +48,14 @@ const Chat: React.FC<ChatProps> = ({ symbol, isMobile, open, setOpen }) => {
     setLoading(true);
 
     try {
-      const response = await axios.post(`${API_URL}/api/gemini/chat`, {
-        symbol,
-        messages: [{ role: "user", content: messageToSend }]
-      });
+      const response = await axios.post(
+        `${API_URL}/gemini/chat`,
+        {
+          symbol,
+          messages: [{ role: "user", content: messageToSend }]
+        },
+        { withCredentials: true }
+      );
 
       const botReply: Message = { sender: "bot", text: response.data?.reply };
       setMessages((prev) => [...prev, botReply]);
@@ -83,7 +86,11 @@ const Chat: React.FC<ChatProps> = ({ symbol, isMobile, open, setOpen }) => {
   }, [messages, loading]);
 
   return (
-    <div className={`chat-container${isMobile ? " mobile" : ""}${open ? " open" : ""}`}>
+    <div
+      className={`chat-container${isMobile ? " mobile" : ""}${
+        open ? " open" : ""
+      }`}
+    >
       <div className="chat-header">
         <img
           src="/sentibot-avatar.png"
