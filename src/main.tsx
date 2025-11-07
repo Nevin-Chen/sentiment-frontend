@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import FlashProvider from "./context/FlashContext";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { AuthProvider } from "./context/AuthContext";
 import { BrowserRouter as Router } from "react-router-dom";
 
 createRoot(document.getElementById("root")!).render(
@@ -15,7 +16,9 @@ createRoot(document.getElementById("root")!).render(
         authorizationParams={{ redirect_uri: window.location.origin + "/callback"}}
       >
         <Router>
-          <App />
+          <AuthProvider>
+            <App />
+          </AuthProvider>
         </Router>
       </Auth0Provider>
     </FlashProvider>
