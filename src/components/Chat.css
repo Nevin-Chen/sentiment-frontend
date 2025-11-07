@@ -32,12 +32,8 @@
   display: flex;
   align-items: center;
   padding: 0.75rem 1rem;
-  background: linear-gradient(
-    135deg,
-    var(--primary-accent),
-    color-mix(in srgb, var(--secondary-bg) 40%, var(--primary-bg))
-  );
-  color: var(--secondary-label);
+  background: linear-gradient(90deg, #0e1c2d, #3c506d);
+  color: var(--primary-accent);
   gap: 0.75rem;
   border-radius: 1rem 1rem 0 0;
   position: relative;
@@ -70,7 +66,7 @@
 .bot-subtitle {
   font-size: 0.85rem;
   font-weight: 400;
-  color: var(--secondary-font);
+  color: var(--chat-label-color);
   letter-spacing: 0.3px;
 }
 
