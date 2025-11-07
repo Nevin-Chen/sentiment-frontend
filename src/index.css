@@ -17,6 +17,11 @@
 a {
   font-weight: 500;
   text-decoration: inherit;
+  color: var(--primary-font);
+}
+
+a:hover {
+  color: var(--primary-accent)
 }
 
 body {
