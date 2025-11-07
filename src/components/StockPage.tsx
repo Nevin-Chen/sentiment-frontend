@@ -5,9 +5,8 @@ import { Chart, ChatWrapper, Articles, Profile, Tooltip } from ".";
 import type { CompanyProfile } from "../types/fmp";
 import type { OHLC, OHLCResponse } from "../types/ohlc";
 import type { NewsArticleResponse } from "../types/newsArticle";
+import { API_URL } from "../config/api";
 import "./StockPage.css";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
 const StockPage: React.FC = () => {
   const { symbol } = useParams<{ symbol: string }>();
@@ -19,8 +18,10 @@ const StockPage: React.FC = () => {
 
   const getStockData = useCallback(async () => {
     try {
-      const url = `${API_URL}/api/stocks/${symbol}/ohlc`;
-      const response = await axios.get<OHLCResponse>(url);
+      const url = `${API_URL}/stocks/${symbol}/ohlc`;
+      const response = await axios.get<OHLCResponse>(url, {
+        withCredentials: true
+      });
       const { data, source } = response.data;
 
       setSource(source);
@@ -32,8 +33,10 @@ const StockPage: React.FC = () => {
 
   const getCompanyProfile = useCallback(async () => {
     try {
-      const url = `${API_URL}/api/stocks/${symbol}/profile`;
-      const { data } = await axios.get<CompanyProfile>(url);
+      const url = `${API_URL}/stocks/${symbol}/profile`;
+      const { data } = await axios.get<CompanyProfile>(url, {
+        withCredentials: true
+      });
       setCompanyProfile(data);
     } catch (err) {
       console.error("Failed to fetch company profile", err);
@@ -42,8 +45,10 @@ const StockPage: React.FC = () => {
 
   const getStockNews = useCallback(async () => {
     try {
-      const url = `${API_URL}/api/stocks/${symbol}/news`;
-      const { data } = await axios.get<NewsArticleResponse>(url);
+      const url = `${API_URL}/stocks/${symbol}/news`;
+      const { data } = await axios.get<NewsArticleResponse>(url, {
+        withCredentials: true
+      });
 
       setNewsResponse(data);
     } catch (err) {

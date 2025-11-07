@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFlash } from "../hooks/flash";
-import "./Search.css";
+import { API_URL } from "../config/api";
 import axios from "axios";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+import "./Search.css";
 
 interface SearchProps {
   variant?: "header" | "home";
@@ -17,14 +16,16 @@ const Search: React.FC<SearchProps> = ({ variant = "header" }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const trimmedSymbol = query.trim();
-    if (!trimmedSymbol) return;
+    const sanitizedQuery = query.trim().toUpperCase();
+    if (!sanitizedQuery) return;
 
     try {
-      const url = `${API_URL}/api/stocks/${trimmedSymbol}/ohlc`;
-      const { data } = await axios.get(url);
+      const url = `${API_URL}/stocks/${sanitizedQuery}/ohlc`;
+      const { data } = await axios.get(url, {
+        withCredentials: true
+      });
 
-      navigate(`/stocks/${trimmedSymbol.toUpperCase()}`, { state: data });
+      navigate(`/stocks/${sanitizedQuery}`, { state: data });
       setQuery("");
     } catch (error: any) {
       setFlash(error?.response?.data?.error);

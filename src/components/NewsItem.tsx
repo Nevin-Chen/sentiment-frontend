@@ -27,7 +27,7 @@ const NewsItem: React.FC<NewsItemProps> = ({
 
       <div className="news-item-content">
         <a href={link} target="_blank" rel="noopener noreferrer">
-          <div className="news-title">{title}</div>
+          <div className="news-title">{removeHtmlTag(title)}</div>
         </a>
 
         <div className="news-preview">
