@@ -12,7 +12,7 @@
 
   --chat-label-color: #a8b5b9;
   --header-footer-color: #d5dbe3;
-  --header-footer-bg: linear-gradient(90deg, #0e1c2d, #253142);
+  --header-footer-bg: linear-gradient(90deg, #0e1c2d, #243c5d);
 }
 
 #root {

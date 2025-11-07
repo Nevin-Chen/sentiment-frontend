@@ -47,6 +47,10 @@
     width: 95%;
   }
 
+  .inner-row {
+    gap: 0;
+  }
+
   .right-column {
     flex: 0;
   }

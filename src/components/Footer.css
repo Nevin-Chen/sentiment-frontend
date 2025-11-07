@@ -1,14 +1,14 @@
 .footer {
   text-align: center;
   padding: 1.5rem 2rem;
-  background: #ccd2d7;
-  color: var(--secondary-font);
+  background: var(--header-footer-bg);
+  color: var(--header-footer-color);
   font-size: 0.9rem;
   border-top: 1px solid var(--primary-border);
 }
 
 .footer a {
-  color: var(--primary-font);
+  color: var(--header-footer-color);
   text-decoration: none;
   margin: 0 0.5rem;
 }

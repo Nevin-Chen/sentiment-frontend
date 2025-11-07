@@ -21,6 +21,11 @@
   height: 42px;
 }
 
+.search-header.search-container form:hover,
+.search-header.search-container form:focus-within {
+  box-shadow: 0 2px 8px var(--primary-accent);
+}
+
 .search-container form {
   display: flex;
   align-items: center;
@@ -35,7 +40,7 @@
 .search-container form:hover,
 .search-container form:focus-within {
   border-color: var(--primary-accent);
-  box-shadow: 0 2px 6px rgba(76, 139, 245, 0.1);
+  box-shadow: 0 2px 6px rgba(76, 139, 245, 0.2);
 }
 
 .search-icon {
