@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useFlash } from "../hooks/flash";
+import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../config/api";
 import axios from "axios";
 import "./Search.css";
+import { useAuth } from "../hooks/auth";
+import { toast } from "react-toastify";
 
 interface SearchProps {
   variant?: "header" | "home";
@@ -11,11 +12,21 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ variant = "header" }) => {
   const [query, setQuery] = useState("");
-  const { setFlash } = useFlash();
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!isAuthenticated) {
+      toast.warning(
+        <>
+          <Link to="/login">Sign in </Link> to start searching
+        </>
+      );
+      return;
+    }
+
     const sanitizedQuery = query.trim().toUpperCase();
     if (!sanitizedQuery) return;
 
@@ -28,7 +39,7 @@ const Search: React.FC<SearchProps> = ({ variant = "header" }) => {
       navigate(`/stocks/${sanitizedQuery}`, { state: data });
       setQuery("");
     } catch (error: any) {
-      setFlash(error?.response?.data?.error);
+      toast.error(error?.response?.data?.error)
     }
   };
 

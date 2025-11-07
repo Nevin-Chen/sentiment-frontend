@@ -30,11 +30,6 @@
 .news-title {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--primary-font);
-}
-
-.news-title:hover {
-  color: var(--primary-accent);
 }
 
 .news-preview {
