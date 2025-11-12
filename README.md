@@ -1,18 +1,6 @@
 # [SentimentAI](https://sentiment-frontend-seven.vercel.app/)
 
-A React + Vite frontend featuring stock charts, market news, and an AI assistant to help you understand technical analysis.
-
-![Demo](https://res.cloudinary.com/dkdkftvsq/video/upload/v1762202106/CleanShot_2025-11-03_at_15.32.59_brtmxj.jpg)
-[Demo](https://res.cloudinary.com/dkdkftvsq/video/upload/v1762202106/CleanShot_2025-11-03_at_15.32.59_brtmxj.mp4)
-
-## Features
-
-- **Chat Assistant** - Educates and provides technical insights using OHLC chart data
-- **Headline Articles** - Provides overview on financial headlines
-- **Stockpage Dashboard**:
-  - Stock price charts - A customized Candlestick Chart, presenting OHLC data
-  - Stock news - Provides the most recent news on a company
-  - Company profile - Presents general company information
+A React + Vite frontend for Sentiment AI. See the [main repository](https://github.com/Nevin-Chen/sentiment-backend)
 
 ## Getting started
 
@@ -37,11 +25,11 @@ npm run dev
 
 ## Setting up the environment
 
-- Create an .env file in the project root following `.env.example`
+- Create a .env file in the project root following `.env.example`
 - Add your [backend](https://github.com/Nevin-Chen/sentiment-backend) URL
- - Set it to either `VITE_API_URL`  
-  *or*
- - Use the default http://localhost:8080 and have the backend running locally
+- Set it to either `VITE_API_URL`  
+  _or_
+- Use the default http://localhost:8080 and have the backend running locally
 
 #### Auth0
 
@@ -50,20 +38,9 @@ npm run dev
 
 ## Technologies
 
+- React + Vite
 - TypeScript
-- React
-- Vite
-- Auth0
-- Vercel
-- ApexCharts
+- Auth0-React
+- CSS
 
-## Features Roadmap
-
-- Improve Charting feature
-  - Integrate additional visual indicators and timeframes
-  - Charting based on AI model feedback
-
-## Author
-
-**Nevin Chen**  
-- [LinkedIn](https://linkedin.com/in/nevin-chen)
+**Author:** [Nevin Chen](https://linkedin.com/in/nevin-chen) | [Portfolio](https://nevinchen.dev)
