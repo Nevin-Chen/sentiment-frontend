@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import { API_URL } from "../config/api";
+import { api } from "../lib/axios";
 import "./Chat.css";
 
 interface ChatProps {
@@ -48,7 +48,7 @@ const Chat: React.FC<ChatProps> = ({ symbol, isMobile, open, setOpen }) => {
     setLoading(true);
 
     try {
-      const response = await axios.post(
+      const response = await api.post(
         `${API_URL}/gemini/chat`,
         {
           symbol,

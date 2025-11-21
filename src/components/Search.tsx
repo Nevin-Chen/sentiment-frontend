@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { API_URL } from "../config/api";
-import axios from "axios";
-import "./Search.css";
 import { useAuth } from "../hooks/auth";
 import { toast } from "react-toastify";
+import { API_URL } from "../config/api";
+import { api } from "../lib/axios";
+import "./Search.css";
 
 interface SearchProps {
   variant?: "header" | "home";
@@ -32,7 +32,7 @@ const Search: React.FC<SearchProps> = ({ variant = "header" }) => {
 
     try {
       const url = `${API_URL}/stocks/${sanitizedQuery}/ohlc`;
-      const { data } = await axios.get(url, {
+      const { data } = await api.get(url, {
         withCredentials: true
       });
 
