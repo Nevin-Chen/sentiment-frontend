@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AuthContext, type AuthContextType } from "../hooks/auth";
 import { useAuth0 } from "@auth0/auth0-react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../config/api";
+import { api } from "../lib/axios";
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const {
@@ -22,7 +22,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const authMe = useCallback(async () => {
     try {
-      const { data } = await axios.get(
+      const { data } = await api.get(
         `${API_URL}/auth/me`,
         {
           withCredentials: true
@@ -52,7 +52,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const loginAsGuest = useCallback(async () => {
     try {
       setLoading(true);
-      await axios.post(
+      await api.post(
         `${API_URL}/auth/guest`,
         {},
         { withCredentials: true }
@@ -67,7 +67,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = useCallback(async () => {
     try {
-      await axios.post(
+      await api.post(
         `${API_URL}/auth/logout`,
         {},
         { withCredentials: true }

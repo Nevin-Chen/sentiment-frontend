@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import { Chart, ChatWrapper, Articles, Profile, Tooltip } from ".";
 import type { CompanyProfile } from "../types/fmp";
 import type { OHLC, OHLCResponse } from "../types/ohlc";
 import type { NewsArticleResponse } from "../types/newsArticle";
 import { API_URL } from "../config/api";
+import { api } from "../lib/axios";
 import "./StockPage.css";
 
 const StockPage: React.FC = () => {
@@ -19,7 +19,7 @@ const StockPage: React.FC = () => {
   const getStockData = useCallback(async () => {
     try {
       const url = `${API_URL}/stocks/${symbol}/ohlc`;
-      const response = await axios.get<OHLCResponse>(url, {
+      const response = await api.get<OHLCResponse>(url, {
         withCredentials: true
       });
       const { data, source } = response.data;
@@ -34,7 +34,7 @@ const StockPage: React.FC = () => {
   const getCompanyProfile = useCallback(async () => {
     try {
       const url = `${API_URL}/stocks/${symbol}/profile`;
-      const { data } = await axios.get<CompanyProfile>(url, {
+      const { data } = await api.get<CompanyProfile>(url, {
         withCredentials: true
       });
       setCompanyProfile(data);
@@ -46,7 +46,7 @@ const StockPage: React.FC = () => {
   const getStockNews = useCallback(async () => {
     try {
       const url = `${API_URL}/stocks/${symbol}/news`;
-      const { data } = await axios.get<NewsArticleResponse>(url, {
+      const { data } = await api.get<NewsArticleResponse>(url, {
         withCredentials: true
       });
 

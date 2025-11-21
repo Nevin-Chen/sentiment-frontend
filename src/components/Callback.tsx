@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/auth";
 import { API_URL } from "../config/api";
+import { api } from "../lib/axios";
 
 export default function Callback() {
   const { getIdTokenClaims, isAuthenticated, isLoading } = useAuth0();
@@ -26,7 +26,7 @@ export default function Callback() {
           throw new Error("No ID token received");
         }
 
-        await axios.post(
+        await api.post(
           `${API_URL}/auth/login`,
           { idToken },
           { withCredentials: true }

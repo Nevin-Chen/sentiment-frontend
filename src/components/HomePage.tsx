@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Search, Articles } from ".";
-import axios from "axios";
 import type { NewsArticleResponse } from "../types/newsArticle";
 import { API_URL } from "../config/api";
+import { api } from "../lib/axios";
 import "./HomePage.css";
 
 const HomePage: React.FC = () => {
@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
 
   const getHeadlineArticles = async () => {
     const url = `${API_URL}/stocks/news`;
-    const { data } = await axios.get(url);
+    const { data } = await api.get(url);
 
     setNewsResponse(data);
   };
